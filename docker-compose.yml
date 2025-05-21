@@ -41,10 +41,23 @@ services:
     networks:
       - laravel
 
+  node:
+    image: node:20
+    container_name: node_app
+    working_dir: /var/www
+    volumes:
+      - ./laravel-app:/var/www
+    ports:
+      - "5173:5173"
+    command: tail -f /dev/null
+    networks:
+      - laravel
+
 networks:
   laravel:
     driver: bridge
 
 volumes:
   pgdata:
+
 
