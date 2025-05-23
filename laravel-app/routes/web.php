@@ -20,5 +20,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index')->middleware('auth');
 
+Route::get('/produtos/create', [ProdutoController::class, 'create'])->name('produtos.create')->middleware('auth');
+Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store')->middleware('auth');
+Route::get('/produtos/{produto}', [ProdutoController::class, 'show'])->name('produtos.show')->middleware('auth');
+Route::get('/produtos/{produto}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit')->middleware('auth');
 
 require __DIR__ . '/auth.php';

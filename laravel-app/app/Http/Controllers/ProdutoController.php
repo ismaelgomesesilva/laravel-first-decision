@@ -12,7 +12,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = Produto::all()->sortByDesc('created_at');
         //dd($produtos);
         return view('produtos.index', compact('produtos'));
     }
@@ -22,7 +22,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('produtos.create');
     }
 
     /**
@@ -30,7 +30,16 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = new Produto;
+
+        $produto->nome = $request->nome;
+        $produto->preco = $request->preco;
+        $produto->descricao = $request->descricao;
+        $produto->quantidade = $request->quantidade;
+
+        $produto->save();
+
+        return redirect()->route('produtos.index');
     }
 
     /**
