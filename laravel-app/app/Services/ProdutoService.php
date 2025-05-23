@@ -3,9 +3,8 @@
 namespace App\Services;
 
 use App\Models\Produto;
-use Illuminate\Support\Facades\DB;
 
-class ProductService
+class ProdutoService
 {
     public function create(array $data): Produto
     {
@@ -38,8 +37,8 @@ class ProductService
         return Produto::paginate($perPage);
     }
 
-    public function getAllOrderedByLatest()
+    public function retorneProdutosOrdenadosPelosMaisRecentes()
     {
-        return Produto::orderBy('id', 'desc')->get();
+        return Produto::orderBy('id', 'desc');
     }
 }

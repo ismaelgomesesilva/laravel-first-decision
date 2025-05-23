@@ -65,6 +65,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="mt-4">
+            {{ $produtos->links() }}
+        </div>
     </div>
 </div>
 </x-app-layout>

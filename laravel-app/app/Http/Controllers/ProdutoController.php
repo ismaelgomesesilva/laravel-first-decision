@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
-use App\Services\ProductService;
-use Illuminate\Http\Request;
+use App\Services\ProdutoService;
 
 class ProdutoController extends Controller
 {
-    protected ProductService $service;
+    protected ProdutoService $service;
 
-    public function __construct(ProductService $service)
+    public function __construct(ProdutoService $service)
     {
         $this->service = $service;
     }
 
     public function index()
     {
-        $produtos = $this->service->getAllOrderedByLatest();
+        $produtos = $this->service->retorneProdutosOrdenadosPelosMaisRecentes()->paginate(10);
         return view('produtos.index', compact('produtos'));
     }
 

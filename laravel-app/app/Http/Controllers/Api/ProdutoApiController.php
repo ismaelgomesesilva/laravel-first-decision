@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
-use App\Services\ProductService;
+use App\Services\ProdutoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProdutoApiController extends Controller
 {
-    protected ProductService $service;
+    protected ProdutoService $service;
 
-    public function __construct(ProductService $service)
+    public function __construct(ProdutoService $service)
     {
         $this->service = $service;
     }
