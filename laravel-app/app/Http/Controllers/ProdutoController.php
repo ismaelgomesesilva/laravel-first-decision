@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -28,16 +29,9 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        $produto = new Produto;
-
-        $produto->nome = $request->nome;
-        $produto->preco = $request->preco;
-        $produto->descricao = $request->descricao;
-        $produto->quantidade = $request->quantidade;
-
-        $produto->save();
+        Produto::create($request->validated());
 
         return redirect()->route('produtos.index')
             ->with('success', 'Produto criado com sucesso!');
@@ -62,14 +56,9 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
-        $produto->nome = $request->nome;
-        $produto->preco = $request->preco;
-        $produto->descricao = $request->descricao;
-        $produto->quantidade = $request->quantidade;
-
-        $produto->save();
+        $produto->update($request->validated());
 
         return redirect()->route('produtos.index')
             ->with('success', 'Produto atualizado com sucesso!');;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,9 @@ class ProdutoApiController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        $produto = Produto::create($request->all());
+        $produto = Produto::create($request->validated());
 
         return response()->json([
             'data' => $produto,
@@ -37,9 +38,9 @@ class ProdutoApiController extends Controller
         ]);
     }
 
-    public function update(Request $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
-        $produto->update($request->all());
+        $produto->update($request->validated());
 
         return response()->json([
             'data' => $produto,
