@@ -33,7 +33,9 @@
             <input type="number" name="quantidade" id="quantidade" class="border rounded w-full py-2 px-3" value="{{ $produto->quantidade }}" required>
         </div>
 
-
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Editar Produto</button>
+        <div class="mb-4 flex justify-end">
+            <a href="{{ route('produtos.index') }}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 inline-block">Voltar para a Lista</a>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Editar Produto</button>
+        </div>
 </div>
 </x-app-layout>

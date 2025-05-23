@@ -8,7 +8,7 @@
 
 <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-white shadow mt-4">
     <h1 class="text-2xl font-bold mb-4">Criar Produto</h1>
-    
+
     <form action="{{ route('produtos.store') }}" method="POST">
         @csrf
         <div class="mb-4">
@@ -31,6 +31,9 @@
             <input type="number" name="quantidade" id="quantidade" class="border rounded w-full py-2 px-3" required>
         </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Criar Produto</button>
+        <div class="mb-4 flex justify-end">
+            <a href="{{ route('produtos.index') }}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 inline-block">Voltar para a Lista</a>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Criar Produto</button>
+        </div>
 </div>
 </x-app-layout>

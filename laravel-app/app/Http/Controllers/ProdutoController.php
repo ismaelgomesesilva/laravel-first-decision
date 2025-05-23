@@ -39,7 +39,8 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return redirect()->route('produtos.index');
+        return redirect()->route('produtos.index')
+            ->with('success', 'Produto criado com sucesso!');
     }
 
     /**
@@ -70,7 +71,8 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return redirect()->route('produtos.index');
+        return redirect()->route('produtos.index')
+            ->with('success', 'Produto atualizado com sucesso!');;
     }
 
     /**
@@ -80,6 +82,7 @@ class ProdutoController extends Controller
     {
         $produto->delete();
 
-        return redirect()->route('produtos.index');
+        return redirect()->route('produtos.index')
+            ->with('success', 'Produto excluído com sucesso!');;
     }
 }
