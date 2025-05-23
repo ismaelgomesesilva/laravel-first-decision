@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 Route::get('/teste-token', function () {
-    $user = User::first(); // ou Auth::user()
+    $user = User::first();
     return $user->createToken('meu-token')->plainTextToken;
 });
 

@@ -3,10 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return Redirect::route('produtos.index');
+})->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
