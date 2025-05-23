@@ -8,7 +8,10 @@ node-install:
 	docker exec -it node_app npm install
 
 node-dev:
-	docker exec -it node_app npm run dev
+	docker exec -u node -it node_app npm run dev
 
 node-build:
 	docker exec -it node_app npm run build
+
+laravel-serve:
+	docker exec -it laravel_app php artisan serve

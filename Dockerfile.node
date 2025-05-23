@@ -1,0 +1,19 @@
+FROM node:20
+
+# Cria diretório de trabalho
+WORKDIR /var/www
+
+# Copia os arquivos package*
+COPY ./laravel-app/package*.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Garante que o binário do Vite seja executável
+RUN chmod +x node_modules/.bin/vite && chmod +x node_modules/vite/bin/vite.js
+
+# Copia os demais arquivos do projeto
+COPY ./laravel-app .
+
+# Mantém o container ativo
+CMD ["tail", "-f", "/dev/null"]
