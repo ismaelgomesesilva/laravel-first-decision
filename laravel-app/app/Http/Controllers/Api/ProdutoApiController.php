@@ -5,22 +5,30 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
+use App\Services\ProductService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProdutoApiController extends Controller
 {
-    public function index()
+    protected ProductService $service;
+
+    public function __construct(ProductService $service)
+    {
+        $this->service = $service;
+    }
+    public function index(): JsonResponse
     {
         return response()->json([
-            'data' => Produto::all(),
+            'data' => $this->service->list(),
             'message' => 'Lista de produtos',
             'errors' => null
         ]);
     }
 
-    public function store(ProdutoRequest $request)
+    public function store(ProdutoRequest $request): JsonResponse
     {
-        $produto = Produto::create($request->validated());
+        $produto = $this->service->create($request->validated());
 
         return response()->json([
             'data' => $produto,
@@ -29,8 +37,10 @@ class ProdutoApiController extends Controller
         ], 201);
     }
 
-    public function show(Produto $produto)
+    public function show(int $id): JsonResponse
     {
+        $produto = $this->service->find($id);
+
         return response()->json([
             'data' => $produto,
             'message' => 'Produto encontrado',
@@ -38,9 +48,9 @@ class ProdutoApiController extends Controller
         ]);
     }
 
-    public function update(ProdutoRequest $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto): JsonResponse
     {
-        $produto->update($request->validated());
+        $produto = $this->service->update($produto, $request->validated());
 
         return response()->json([
             'data' => $produto,
@@ -49,7 +59,7 @@ class ProdutoApiController extends Controller
         ]);
     }
 
-    public function destroy(Produto $produto)
+    public function destroy(Produto $produto): JsonResponse
     {
         $produto->delete();
 
