@@ -54,9 +54,15 @@
                 @enderror
             </div>
 
-            <div class="mb-4 flex justify-end">
-                <a href="{{ route('produtos.index') }}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2 inline-block">Voltar para a Lista</a>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar Alterações</button>
+            <div class="mb-4 flex justify-end">                
+                <a href="{{ route('produtos.index') }}" class="bg-white hover:bg-gray-100  text-gray-800 px-4 py-2 rounded mr-2 inline-flex items-center gap-2">
+                    <x-heroicon-o-arrow-left class="h-4 w-4"/>
+                    Voltar para a Lista
+                </a>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded gap-2 inline-flex items-center">
+                    <x-heroicon-o-check class="h-4 w-4"/>
+                    Salvar Alterações
+                </button>
             </div>
         </form>
     </div>
