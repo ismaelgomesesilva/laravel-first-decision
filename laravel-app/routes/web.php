@@ -24,5 +24,7 @@ Route::get('/produtos/create', [ProdutoController::class, 'create'])->name('prod
 Route::post('/produtos', [ProdutoController::class, 'store'])->name('produtos.store')->middleware('auth');
 Route::get('/produtos/{produto}', [ProdutoController::class, 'show'])->name('produtos.show')->middleware('auth');
 Route::get('/produtos/{produto}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit')->middleware('auth');
+Route::put('/produtos/{produto}', [ProdutoController::class, 'update'])->name('produtos.update')->middleware('auth');
+Route::delete('/produtos/{produto}/destroy', [ProdutoController::class, 'destroy'])->name('produtos.destroy')->middleware('auth');
 
 require __DIR__ . '/auth.php';

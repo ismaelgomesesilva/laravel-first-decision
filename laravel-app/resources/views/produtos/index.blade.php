@@ -22,6 +22,7 @@
                     <th class="border px-4 py-2">Descrição</th>
                     <th class="border px-4 py-2">Preço</th>
                     <th class="border px-4 py-2">Quantidade</th>
+                    <th class="border px-4 py-2">Ações</th>
                     
                 </tr>
             </thead>
@@ -33,6 +34,13 @@
                         <td class="border px-4 py-2">{{ $produto->descricao }}</td>
                         <td class="border px-4 py-2">R$ {{ number_format($produto->preco, 2, ',', '.') }}</td>
                         <td class="border px-4 py-2">{{ $produto->quantidade }}</td>
+                        <td class="border px-4 py-2">
+                            <a href="{{ route('produtos.edit', $produto->id) }}" class="text-blue-500">Editar</a>
+                            <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500">Excluir</button>
+                            </form>
                     </tr>
                 @endforeach
             </tbody>

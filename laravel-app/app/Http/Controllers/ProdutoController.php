@@ -47,7 +47,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        return view('produtos.show', compact('produto'));
     }
 
     /**
@@ -55,7 +55,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        return view('produtos.edit', compact('produto'));
     }
 
     /**
@@ -63,7 +63,14 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->nome = $request->nome;
+        $produto->preco = $request->preco;
+        $produto->descricao = $request->descricao;
+        $produto->quantidade = $request->quantidade;
+
+        $produto->save();
+
+        return redirect()->route('produtos.index');
     }
 
     /**
@@ -71,6 +78,8 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+
+        return redirect()->route('produtos.index');
     }
 }
