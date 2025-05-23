@@ -1,19 +1,27 @@
 # 🚀 Laravel First Decision
 
-## 📋 Descrição do Projeto  
-Aplicação Laravel para gerenciamento de produtos, com autenticação via token e interface web responsiva.
+## 📋 Descrição do Projeto
+Aplicação Laravel para gerenciamento de produtos.
 
----
-
-## ⚙️ Pré-requisitos  
+## ⚙️ Pré-requisitos
 - 🐳 Docker  
 - 🐳 Docker Compose  
-- 🔧 Make (opcional, para facilitar execução de comandos)  
-- 💡 Composer instalado no container Laravel  
+- 🔧 Make (opcional, para facilitar execução de comandos)
 
+## ⚙️ Instalação
+
+### 🔁 Instalação Rápida (recomendado)
+
+Se você tiver o `make` instalado, pode executar tudo com um único comando:
+
+```bash
+make install
+```
 ---
 
-## 🛠️ Instalação
+### 🧩 Instalação passo a passo (opcional)
+
+Caso prefira fazer manualmente, siga os passos abaixo:
 
 1. 📥 Clone o repositório:
 ```bash
@@ -26,86 +34,70 @@ cd laravel-first-decision
 docker-compose up -d --build
 ```
 
-3. 🧱 Instale as dependências PHP (dentro do container):
+3. 🔧 Corrija permissões, se necessário:
 ```bash
-docker exec -it laravel_app composer install
+sudo chown -R $(USER):www-data laravel-app
+sudo find laravel-app -type f -exec chmod 644 {} \;
+sudo find laravel-app -type d -exec chmod 755 {} \;
+sudo chmod -R 775 laravel-app/storage laravel-app/bootstrap/cache
 ```
 
-4. 🛠️ Copie o arquivo de exemplo `.env` e gere a chave da aplicação:
+4. 📦 Instale as dependências do frontend:
 ```bash
-docker exec -it laravel_app cp .env.example .env
-docker exec -it laravel_app php artisan key:generate
+docker exec -it node_app npm install
 ```
 
-5. 🗃️ Execute as migrações do banco de dados:
+5. 🚀 Faça o build com o Vite:
 ```bash
-docker exec -it laravel_app php artisan migrate
+docker exec -it node_app npm run build
 ```
 
-6. 🔧 Corrija permissões (se necessário):
+6. 🌱 Rode as migrations e seeders:
 ```bash
-make fix-perms
+docker exec -it laravel_app php artisan migrate --seed
 ```
 
-7. 📦 Instale as dependências do frontend:
-```bash
-make node-install
-```
-
-8. 🚀 Faça o build com o Vite:
-```bash
-make node-build
-```
-
-9. 🌐 Acesse a aplicação no navegador:
-```
+### 🌐 Acesse a aplicação no navegador:
 http://localhost
-```
 
 ---
 
-## 🔐 API RESTful Protegida por Token
+## 🔐 API RESTful Protegida por Token - Instruções
 
 Esta aplicação expõe endpoints da API para operações CRUD sobre produtos, protegidos por autenticação via token.
 
 ### 🔑 Autenticação via Token
 
-1. Acesse o container do Laravel:
+1. Gere um token de autenticação pessoal:
 ```bash
 docker exec -it laravel_app bash
-```
-
-2. Gere um token de autenticação pessoal:
-```bash
 php artisan tinker
 >>> $user = App\Models\User::find(1);
 >>> $token = $user->createToken('first-decision')->plainTextToken;
 ```
 
-3. Use esse token nas requisições da API com o cabeçalho:
-```
+2. Utilize esse token nas requisições da API adicionando o cabeçalho:
 Authorization: Bearer SEU_TOKEN_AQUI
-```
 
 ---
 
-## 📬 Como Testar a API com o Postman
+## 📬 Como testar a API pelo Postman
 
 1. 🔓 Abra o Postman.
 
-2. ⬇️ Importe a collection `ProdutosAPI.postman_collection.json` (presente na raiz do projeto):
+2. ⬇️ Importe a collection `ProdutosAPI.postman_collection.json` que está na raiz do projeto:
    - Clique em **Import** no canto superior esquerdo.
-   - Selecione o arquivo.
+   - Selecione o arquivo `ProdutosAPI.postman_collection.json`.
    - Clique em **Import** para adicioná-la ao Postman.
 
-3. 🧪 Use o endpoint **Gerar Token** da collection para gerar seu token.
+3. 🔑 Na collection importada, abra o endpoint **Gerar Token** e faça a requisição para gerar seu token de autenticação.
 
 4. 📁 Selecione a collection **API Produtos** na barra lateral.
 
 5. 🔐 Clique na aba **Authorization** da collection.
 
-6. ⚙️ Em **Type**, selecione **Bearer Token**.
+6. ⚙️ No tipo de autorização, escolha **Bearer Token**.
 
-7. 📋 Cole o token gerado no campo **Token**.
+7. 📋 Cole o token gerado no passo 3 no campo **Token**.
 
-8. ✅ Agora você pode usar todos os endpoints da collection autenticado.
+8. ✅ Agora você pode usar todos os endpoints da collection com a autenticação configurada.

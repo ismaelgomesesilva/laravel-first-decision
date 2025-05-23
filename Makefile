@@ -15,3 +15,22 @@ node-build:
 
 laravel-serve:
 	docker exec -it laravel_app php artisan serve
+
+migrate-seed:
+	docker exec -it laravel_app php artisan migrate --seed
+
+clone:
+	git clone https://github.com/ismaelgomesesilva/laravel-first-decision.git
+	cd laravel-first-decision
+
+docker-up:
+	docker-compose up -d --build
+
+install:
+	make clone
+	make docker-up
+	make fix-perms
+	make node-install
+	make node-build
+	make migrate-seed
+
