@@ -1,0 +1,166 @@
+{
+    "info": {
+        "name": "API Produtos",
+        "_postman_id": "b2f7c3e4-7f28-4b9d-9b62-cd65b4a5a6a0",
+        "description": "Coleção para testar a API RESTful protegida de Produtos",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Listar Produtos",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer TOKEN_AQUI",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost/api/produtos",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "produtos"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Criar Produto",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer TOKEN_AQUI",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"nome\": \"Produto Teste\",\n    \"descricao\": \"Descrição do produto teste\",\n    \"preco\": 123.45,\n    \"quantidade\": 10\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost/api/produtos",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "produtos"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Mostrar Produto",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer TOKEN_AQUI",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost/api/produtos/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "produtos",
+                        "1"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Atualizar Produto",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer TOKEN_AQUI",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"nome\": \"Produto Atualizado\",\n    \"descricao\": \"Descrição atualizada\",\n    \"preco\": 200.00,\n    \"quantidade\": 20\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost/api/produtos/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "produtos",
+                        "1"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Excluir Produto",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer TOKEN_AQUI",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost/api/produtos/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "produtos",
+                        "1"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
