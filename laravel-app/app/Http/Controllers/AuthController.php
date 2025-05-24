@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class AuthController extends Controller
         }
 
         // Usuário autenticado
-        $user = Auth::user();
+        $user =   User::where('email', $request->input('email'))->first();
 
         // Cria o token Sanctum
         $token = $user->createToken('api-token')->plainTextToken;

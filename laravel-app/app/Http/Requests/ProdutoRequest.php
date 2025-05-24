@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProdutoRequest extends FormRequest
 {
@@ -47,5 +49,18 @@ class ProdutoRequest extends FormRequest
             'quantidade.required' => 'A quantidade é obrigatória.',
             'quantidade.integer' => 'A quantidade deve ser um número inteiro.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        if ($this->expectsJson()) {
+            throw new HttpResponseException(response()->json([
+                'data' => null,
+                'message' => 'Erro de validação',
+                'errors' => $validator->errors(),
+            ], 422));
+        }
+
+        parent::failedValidation($validator); // Comportamento padrão para web
     }
 }

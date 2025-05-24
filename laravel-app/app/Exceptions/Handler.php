@@ -7,6 +7,7 @@ use Illuminate\Validation\ValidationException;
 use Throwable;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -19,29 +20,20 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception): Response
     {
-        if ($request->is('api/*') || $request->wantsJson()) {
 
-            if ($exception instanceof ValidationException) {
-                return response()->json([
-                    'message' => 'Erro de validação',
-                    'errors' => $exception->errors(),
-                    'data' => null,
-                ], 422);
-            }
-
-            $statusCode = 500;
-
-            if ($exception instanceof HttpExceptionInterface) {
-                $statusCode = $exception->getStatusCode();
-            }
-
-            return response()->json([
-                'message' => $exception->getMessage() ?: 'Erro interno no servidor',
-                'errors' => null,
-                'data' => null,
-            ], $statusCode);
-        }
 
         return parent::render($request, $exception);
     }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->is('api/*')) {
+            return response()->json([
+                'message' => 'Não autorizado',
+                'errors' => null,
+                'data' => null,
+            ], 401);
+        }
+
+        return parent::unauthenticated($request, $exception);
 }
