@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use App\Services\ProdutoService;
+use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
@@ -15,9 +16,12 @@ class ProdutoController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = $this->service->retorneProdutosOrdenadosPelosMaisRecentes()->paginate(10);
+        $filters = $request->only(['preco_min', 'preco_max', 'quantidade_min']);
+
+        $produtos = $this->service->listarProdutos($filters)->paginate(10);
+
         return view('produtos.index', compact('produtos'));
     }
 

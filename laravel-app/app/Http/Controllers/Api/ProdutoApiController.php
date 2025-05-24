@@ -17,10 +17,14 @@ class ProdutoApiController extends Controller
     {
         $this->service = $service;
     }
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $filters = $request->only(['preco_min', 'preco_max', 'quantidade_min']);
+
+        $produtos = $this->service->listarProdutos($filters)->paginate(10);
+
         return response()->json([
-            'data' => $this->service->list(),
+            'data' => $produtos,
             'message' => 'Lista de produtos',
             'errors' => null
         ]);
