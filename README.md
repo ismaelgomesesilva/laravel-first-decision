@@ -65,17 +65,26 @@ docker exec -it node_app npm run build
 
 7. 🌱 Rode as migrations e seeders:
 ```bash
-docker exec -it laravel_app php artisan migrate --seed
+docker exec -it laravel_app php artisan migrate:fresh --seed
 ```
 
 ### 🌐 Acesse a aplicação no navegador:
 http://localhost
 
----
+### 👤 Usuário padrão para testes:
+Email: teste@firstdecision.com.br 
+
+Senha: admin123
+
+## 🎬 Demonstração do Sistema
+
+![Demonstração do sistema](demo.gif)
+
 
 ## 🔐 API RESTful Protegida por Token - Instruções
 
 Esta aplicação expõe endpoints da API para operações CRUD sobre produtos, protegidos por autenticação via token.
+
 
 ### 🔑 Autenticação via Token
 
@@ -90,7 +99,7 @@ php artisan tinker
 2. Utilize esse token nas requisições da API adicionando o cabeçalho:
 Authorization: Bearer SEU_TOKEN_AQUI
 
----
+
 
 ## 📬 Como testar a API pelo Postman
 
@@ -114,7 +123,7 @@ Authorization: Bearer SEU_TOKEN_AQUI
 8. ✅ Agora você pode usar todos os endpoints da collection com a autenticação configurada.
 
 
----
+
 
 ## 🧪 Executando os Testes
 

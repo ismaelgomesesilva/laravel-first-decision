@@ -17,7 +17,7 @@ laravel-serve:
 	docker exec -it laravel_app php artisan serve
 
 migrate-seed:
-	docker exec -it laravel_app php artisan migrate --seed
+	docker exec -it laravel_app php artisan migrate:fresh --seed
 
 copy-env:
 	docker exec -it laravel_app cp .env.example .env
