@@ -19,9 +19,11 @@ laravel-serve:
 migrate-seed:
 	docker exec -it laravel_app php artisan migrate --seed
 
-clone:
-	git clone https://github.com/ismaelgomesesilva/laravel-first-decision.git
-	cd laravel-first-decision
+copy-env:
+	docker exec -it laravel_app cp .env.example .env
+
+compose-install:
+	docker exec -it laravel_app composer install
 
 docker-up:
 	docker-compose up -d --build
@@ -30,8 +32,9 @@ test:
 	docker exec -it laravel_app php artisan test
 
 install:
-	make clone
 	make docker-up
+	make copy-env
+	make compose-install
 	make fix-perms
 	make node-install
 	make node-build

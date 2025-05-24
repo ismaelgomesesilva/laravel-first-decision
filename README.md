@@ -10,6 +10,13 @@ Aplicação Laravel para gerenciamento de produtos.
 
 ## ⚙️ Instalação
 
+### 📥 Clone o repositório:
+
+```bash
+git clone https://github.com/ismaelgomesesilva/laravel-first-decision.git
+cd laravel-first-decision
+```
+
 ### 🔁 Instalação Rápida (recomendado)
 
 Se você tiver o `make` instalado, pode executar tudo com um único comando:
@@ -23,18 +30,23 @@ make install
 
 Caso prefira fazer manualmente, siga os passos abaixo:
 
-1. 📥 Clone o repositório:
-```bash
-git clone https://github.com/ismaelgomesesilva/laravel-first-decision.git
-cd laravel-first-decision
-```
-
-2. 🐳 Suba os containers:
+1. 🐳 Suba os containers:
 ```bash
 docker-compose up -d --build
 ```
 
-3. 🔧 Corrija permissões, se necessário:
+2. Copie as variáveis de ambiente
+```
+docker exec -it laravel_app cp .env.example .env
+```
+
+3. 📦 Instale as dependencias do composer:
+```bash
+docker exec -it laravel_app composer install
+```
+
+
+4. 🔧 Corrija permissões, se necessário:
 ```bash
 sudo chown -R $(USER):www-data laravel-app
 sudo find laravel-app -type f -exec chmod 644 {} \;
@@ -42,17 +54,17 @@ sudo find laravel-app -type d -exec chmod 755 {} \;
 sudo chmod -R 775 laravel-app/storage laravel-app/bootstrap/cache
 ```
 
-4. 📦 Instale as dependências do frontend:
+5. 📦 Instale as dependências do frontend:
 ```bash
 docker exec -it node_app npm install
 ```
 
-5. 🚀 Faça o build com o Vite:
+6. 🚀 Faça o build com o Vite:
 ```bash
 docker exec -it node_app npm run build
 ```
 
-6. 🌱 Rode as migrations e seeders:
+7. 🌱 Rode as migrations e seeders:
 ```bash
 docker exec -it laravel_app php artisan migrate --seed
 ```
