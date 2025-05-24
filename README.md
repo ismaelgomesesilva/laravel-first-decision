@@ -35,18 +35,26 @@ Caso prefira fazer manualmente, siga os passos abaixo:
 docker-compose up -d --build
 ```
 
+<<<<<<< HEAD
 2. Copie as variáveis de ambiente
 ```
 docker exec -it laravel_app cp .env.example .env
 ```
 
 3. 📦 Instale as dependencias do composer:
+=======
+2. 📦 Instale as dependencias do composer:
+>>>>>>> 00ae41111c455494383323759002485a12e4e35a
 ```bash
 docker exec -it laravel_app composer install
 ```
 
 
+<<<<<<< HEAD
 4. 🔧 Corrija permissões, se necessário:
+=======
+2. 🔧 Corrija permissões, se necessário:
+>>>>>>> 00ae41111c455494383323759002485a12e4e35a
 ```bash
 sudo chown -R $(USER):www-data laravel-app
 sudo find laravel-app -type f -exec chmod 644 {} \;
@@ -54,17 +62,29 @@ sudo find laravel-app -type d -exec chmod 755 {} \;
 sudo chmod -R 775 laravel-app/storage laravel-app/bootstrap/cache
 ```
 
+<<<<<<< HEAD
 5. 📦 Instale as dependências do frontend:
+=======
+3. 📦 Instale as dependências do frontend:
+>>>>>>> 00ae41111c455494383323759002485a12e4e35a
 ```bash
 docker exec -it node_app npm install
 ```
 
+<<<<<<< HEAD
 6. 🚀 Faça o build com o Vite:
+=======
+4. 🚀 Faça o build com o Vite:
+>>>>>>> 00ae41111c455494383323759002485a12e4e35a
 ```bash
 docker exec -it node_app npm run build
 ```
 
+<<<<<<< HEAD
 7. 🌱 Rode as migrations e seeders:
+=======
+5. 🌱 Rode as migrations e seeders:
+>>>>>>> 00ae41111c455494383323759002485a12e4e35a
 ```bash
 docker exec -it laravel_app php artisan migrate --seed
 ```
