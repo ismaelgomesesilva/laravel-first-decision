@@ -26,6 +26,9 @@ clone:
 docker-up:
 	docker-compose up -d --build
 
+test:
+	docker exec -it laravel_app php artisan test
+
 install:
 	make clone
 	make docker-up
