@@ -23,7 +23,7 @@
 
             <div class="mb-4">
                 <label for="nome" class="block text-gray-700">Nome</label>
-                <input type="text" name="nome" id="nome"  value="{{ old('nome', $produto->nome ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="text" name="nome" id="nome"  value="{{ old('nome', $produto->nome ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @error('nome')
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror       
@@ -31,7 +31,7 @@
 
             <div class="mb-4">
                 <label for="descricao" class="block text-gray-700">Descrição</label>
-                <textarea name="descricao" id="descricao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <textarea name="descricao" id="descricao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {{ old('descricao', $produto->descricao ?? '') }}
                 </textarea>
                 @error('descricao')
@@ -41,7 +41,7 @@
 
             <div class="mb-4">
                 <label for="preco" class="block text-gray-700">Preço</label>
-                <input type="number" name="preco" id="preco" step="0.01" value="{{ old('preco', $produto->preco ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="number" name="preco" id="preco" step="0.01" value="{{ old('preco', $produto->preco ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @error('preco')
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
@@ -49,7 +49,7 @@
 
             <div class="mb-4">
                 <label for="quantidade" class="block text-gray-700">Quantidade</label>
-                <input type="number" name="quantidade" id="quantidade" value="{{ old('quantidade', $produto->quantidade ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="number" name="quantidade" id="quantidade" value="{{ old('quantidade', $produto->quantidade ?? '') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @error('quantidade')
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
