@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 class ProdutoRequestTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_valida_dados_validos()
     {
         $data = [
